@@ -7,40 +7,40 @@ import BookSearch from './components/BookSearch';
 
 
 class BooksApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            books: []
-        }
-    }
+  constructor(props) {
+     super(props);
+     this.state = {
+      books: []
+     }
+   }
 
-    componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({ books })
-        })
-    }
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState( { books } )
+    })
+  }
 
-    updateBook = (book, shelf) => {
-        BooksAPI.update(book, shelf);
+  moveShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf);
 
-        BooksAPI.getAll().then((books) => {
-            this.setState({ books })
-        })
+    BooksAPI.getAll().then((books) => {
+      this.setState( { books } )
+    })
 
-    }
+  }
 
-    render() {
+  render() {
     return (
       <div className="app">
       <Route exact path='/' render={() => (
         <BookPage
           books={this.state.books}
-          updateBook= {this.updateBook}
+          moveShelf= {this.moveShelf}
           />
     )}/>
     <Route path='/search' render={() => (
       <BookSearch
-      updateBook= {this.updateBook}
+      moveShelf= {this.moveShelf}
       books={this.state.books}
       />
   )}/>

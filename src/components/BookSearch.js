@@ -1,16 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
 import sortBy from 'sort-by'
 
 class BookSearch extends React.Component {
-  static propTypes = {
-    books: PropTypes.array.isRequired,
-    updateBook: PropTypes.func.isRequired
-  }
-
     state = {
       query: '',
       showingBooks: []
@@ -29,12 +23,7 @@ class BookSearch extends React.Component {
     }
 
   render() {
-    let showedBooks = this.state.showingBooks,
-        movedBook = this.props.updateBook
-
-    //test what's inside in props
-    //console.log(this.props);
-
+    console.log(this.state.showingBooks);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -48,11 +37,11 @@ class BookSearch extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              showedBooks.map(books => (
-                <li key = {books.id}>
+              this.state.showingBooks.map(showingBooks => (
+                <li key = {showingBooks.id}>
                   <Book
-                    book={books}
-                    updateBook = {movedBook}
+                    book={showingBooks}
+                    moveShelf = {this.props.moveShelf}
                     />
                 </li>
               ))

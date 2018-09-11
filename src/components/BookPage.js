@@ -7,16 +7,11 @@ import PropTypes from 'prop-types';
 class BookPage extends React.Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    updateBook: PropTypes.func.isRequired
+    moveShelf: PropTypes.func.isRequired
   }
 
   render() {
-    let bookName = this.props.books,
-        moveBook = this.props.updateBook
-
-    //test what's inside in props
-    //console.log(this.props);
-
+    // console.log(this.props.books);
     return (
       <div className="list-books">
       <div className="list-books-title">
@@ -28,10 +23,12 @@ class BookPage extends React.Component {
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {bookName.filter(book => book.shelf === 'currentlyReading').map((book) => (
+                  {this.props.books
+                      .filter(book => book.shelf === 'currentlyReading')
+                      .map((book) => (
                         <li key={book.id}>
                           <Book book= {book}
-                            updateBook = {moveBook}
+                            moveShelf = {this.props.moveShelf}
                           />
                         </li>
                       ))}
@@ -42,10 +39,12 @@ class BookPage extends React.Component {
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                {bookName.filter(book => book.shelf === 'wantToRead').map((book) => (
+                {this.props.books
+                    .filter(book => book.shelf === 'wantToRead')
+                    .map((book) => (
                       <li key={book.id}>
                         <Book book= {book}
-                          updateBook = {moveBook}
+                          moveShelf = {this.props.moveShelf}
                         />
                       </li>
                     ))}
@@ -56,10 +55,12 @@ class BookPage extends React.Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                {bookName.filter(book => book.shelf === 'read').map((book) => (
+                {this.props.books
+                    .filter(book => book.shelf === 'read')
+                    .map((book) => (
                       <li key={book.id}>
                         <Book book= {book}
-                          updateBook = {moveBook}
+                          moveShelf = {this.props.moveShelf}
                         />
                       </li>
                     ))}
