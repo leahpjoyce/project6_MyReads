@@ -6,12 +6,9 @@ import BookPage from './components/BookPage';
 import BookSearch from './components/BookSearch';
 
 class BooksApp extends React.Component {
-  constructor(props) {
-     super(props);
-     this.state = {
-      books: []
-     }
-   }
+  state = {
+    books: []
+  }
 
    componentDidMount() {
        BooksAPI.getAll().then((books) => {
