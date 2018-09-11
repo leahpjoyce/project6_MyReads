@@ -1,31 +1,39 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import Book from './Book'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import * as BooksAPI from '../BooksAPI';
+import Book from './Book';
 import sortBy from 'sort-by'
 
 class BookSearch extends React.Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    updateBook: PropTypes.func.isRequired
+  }
 
     state = {
       query: '',
-      showBooks: []
+      showingBooks: []
     }
 
     updateQuery = (query) => {
       if (query) {
-        BooksAPI.search(query).then((showBooks) => {
-          if (showBooks.error){
-            this.setState({ showBooks: []})
+        BooksAPI.search(query).then((showingBooks) => {
+          if (showingBooks.error){
+            this.setState({showingBooks: []});
           } else {
-            this.setState({showBooks : showBooks})
+            this.setState({showingBooks});
           }
         })
-      } else {
-        this.setState({ showBooks: []})
       }
     }
 
   render() {
+    let showedBooks = this.state.showingBooks,
+        movedBook = this.props.updateBook
+
+    //test what's inside in props
+    //console.log(this.props);
 
     return (
       <div className="search-books">
@@ -40,11 +48,11 @@ class BookSearch extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              this.state.showBooks.map(showBooks => (
-                <li key = {showBooks.id}>
+              showedBooks.map(books => (
+                <li key = {books.id}>
                   <Book
-                    book={showBooks}
-                    moveShelf = {this.props.moveShelf}
+                    book={books}
+                    updateBook = {movedBook}
                     />
                 </li>
               ))
@@ -55,4 +63,4 @@ class BookSearch extends React.Component {
     );
   }
 }
- export default BookSearch
+ export default BookSearch;

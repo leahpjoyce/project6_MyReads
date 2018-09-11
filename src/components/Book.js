@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 class Book extends React.Component {
 
   render () {
     let thumbnail = this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : '';
+
+    //test what's inside in props
+    console.log(this.props);
+
     return (
       <div className="book">
         <div className="book-top">
@@ -11,7 +15,7 @@ class Book extends React.Component {
           <div className="book-shelf-changer">
           <select
               value={this.props.book.shelf}
-            onChange = {(event) => this.props.moveShelf(
+            onChange = {(event) => this.props.updateBook(
               this.props.book, event.target.value
           )}
           >
@@ -29,4 +33,4 @@ class Book extends React.Component {
     );
   }
 }
- export default Book
+ export default Book;
