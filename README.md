@@ -4,8 +4,8 @@ This project creates a web application that allows to select and categorize book
 
 ## To get started:
 
-* clone or download the <project>
-* cd <project>
+* clone or download the project
+* cd project
 * npm install
 * npm start
 
