@@ -47,14 +47,23 @@ class BookSearch extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              this.state.showingBooks.map(books => (
-                <li key = {books.id}>
-                  <Book
-                    book={books}
-                    updateBook = {this.props.updateBook}
-                    />
-                </li>
-              ))
+              this.state.showingBooks.map(books => {
+                let shelf = 'none';
+
+                this.props.books.map(book => (
+                  book.id === books.id ? shelf === book.shelf : ''
+                ))
+
+                return (
+                  <li key = {books.id}>
+                    <Book
+                      book={books}
+                      updateBook = {this.props.updateBook}
+                      currentShelf = {shelf}
+                      />
+                  </li>
+                );
+              })
             }
           </ol>
         </div>
@@ -62,4 +71,5 @@ class BookSearch extends React.Component {
     );
   }
 }
+
  export default BookSearch;
