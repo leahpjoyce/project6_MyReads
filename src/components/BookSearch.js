@@ -25,13 +25,12 @@ class BookSearch extends React.Component {
             this.setState({showingBooks});
           }
         })
+      } else {
+        this.setState({ showingBooks: []})
       }
     }
 
   render() {
-    let showedBooks = this.state.showingBooks,
-        movedBook = this.props.updateBook
-
     //test what's inside in props
     //console.log(this.props);
 
@@ -48,11 +47,11 @@ class BookSearch extends React.Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {
-              showedBooks.map(books => (
+              this.state.showingBooks.map(books => (
                 <li key = {books.id}>
                   <Book
                     book={books}
-                    updateBook = {movedBook}
+                    updateBook = {this.props.updateBook}
                     />
                 </li>
               ))
