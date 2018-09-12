@@ -29,6 +29,7 @@ class BookPage extends React.Component {
                         <li key={book.id}>
                           <Book book= {book}
                             updateBook = {this.props.updateBook}
+                            currentShelf = 'currentlyReading'
                           />
                         </li>
                       ))}
@@ -43,6 +44,7 @@ class BookPage extends React.Component {
                       <li key={book.id}>
                         <Book book= {book}
                           updateBook = {this.props.updateBook}
+                          currentShelf = 'wantToRead'
                         />
                       </li>
                     ))}
@@ -57,6 +59,7 @@ class BookPage extends React.Component {
                       <li key={book.id}>
                         <Book book= {book}
                           updateBook = {this.props.updateBook}
+                          currentShelf = 'read'
                         />
                       </li>
                     ))}
