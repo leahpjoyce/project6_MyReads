@@ -23,27 +23,23 @@ class BooksApp extends React.Component {
     updateBook = (book, shelf) => {
         BooksAPI.update(book, shelf);
 
-        BooksAPI.getAll().then((books) => {
-            this.setState({ books })
-        })
-
     }
 
     render() {
     return (
-      <div className="app">
+    <div className="app">
       <Route exact path='/' render={() => (
         <BookPage
           books={this.state.books}
           updateBook= {this.updateBook}
           />
-    )}/>
-    <Route path='/search' render={() => (
-      <BookSearch
-      updateBook= {this.updateBook}
-      books={this.state.books}
-      />
-  )}/>
+      )}/>
+      <Route path='/search' render={() => (
+        <BookSearch
+        updateBook= {this.updateBook}
+        books={this.state.books}
+        />
+      )}/>
     </div>
     )
   }
