@@ -6,7 +6,7 @@ class Book extends React.Component {
     let thumbnail = this.props.book.imageLinks ? this.props.book.imageLinks.thumbnail : '';
 
     //test what's inside in props
-    console.log(this.props);
+    //console.log(this.props);
 
     return (
       <div className="book">

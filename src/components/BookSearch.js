@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as BooksAPI from '../BooksAPI';
 import Book from './Book';
-import sortBy from 'sort-by'
+
 
 class BookSearch extends React.Component {
   static propTypes = {
@@ -51,7 +51,7 @@ class BookSearch extends React.Component {
                 let shelf = 'none';
 
                 this.props.books.map(book => (
-                  book.id === books.id ? shelf === book.shelf : ''
+                  book.id === books.id ? shelf = book.shelf : ''
                 ))
 
                 return (
